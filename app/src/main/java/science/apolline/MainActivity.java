@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import science.apolline.database.AppDatabase;
+import science.apolline.database.SensorDao;
 import science.apolline.sensor.ioio.view.IOIOFragment;
 import science.apolline.sensor.ioio.service.IOIOService;
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity
     private final int REQUEST_CODE_ENABLE_BLUETOOTH = 0;
 
     private Context myContext;
-    private AppDatabase appDatabase;
+    private SensorDao sensorModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +56,8 @@ public class MainActivity extends AppCompatActivity
         Fragment IOIOFragment = new IOIOFragment();
         replaceFragment(IOIOFragment);
 
-        appDatabase = AppDatabase.Companion.getAppDatabase(getApplicationContext());
-        appDatabase.SensorModel().getAll();
+        sensorModel = AppDatabase.Companion.getInstance(getApplicationContext());
+        sensorModel.getAll();
 
 
     }
